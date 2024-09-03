@@ -1,0 +1,88 @@
+CREATE TABLE Tableau_des_vehicules(
+vehiculeID INT PRIMARY KEY NOT NULL,
+Plaque_immatriculation VARCHAR(255)NOT NULL,
+Marque VARCHAR(255) NOT NULL,
+Modele VARCHAR(255) NOT NULL,
+Annee VARCHAR(255) NOT NULL,
+Couleur VARCHAR(255) NOT NULL,
+NIV VARCHAR(255) NOT NULL,
+);
+CREATE TABLE Tableau_des_pilotes(
+DriverID INT PRIMARY KEY,
+FirstName VARCHAR(255) NOT NULL,
+LastName VARCHAR(255)NOT NULL,
+LicenseNumber VARCHAR(255) NOT NULL,
+Phone VARCHAR(255) NOT NULL,
+Address VARCHAR(255) NOT NULL,
+City VARCHAR(255) NOT NULL,
+State VARCHAR(255) NOT NULL,
+Zipcode VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE Tableau_des_deplacement(
+TripsID INT PRIMARY KEY,
+StartDate VARCHAR(255) NOT NULL,
+EndDate VARCHAR (255) NOT NULL,
+StartLocation VARCHAR (255) NOT NULL,
+EndLocation VARCHAR(255) NOT NULL,
+Distance VARCHAR(255) NOT NULL,
+VehiculeID INT REFERENCES Tableau_des_vehicules(vehiculeID)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+ALTER TABLE Tableau_des_deplacement ADD DriverID INT REFERENCES Tableau_des_pilotes(DriverID) ON DELETE CASCADE
+ON UPDATE CASCADE
+
+CREATE TABLE entretien(
+MaintenanceDateID INT PRIMARY KEY,
+Description VARCHAR(255) NOT NULL,
+Cout VARCHAR(255) NOT NULL,
+VehiculeID INT REFERENCES Tableau_des_vehicules(vehiculeID)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+ALTER TABLE entretien ADD MaintenanceDate VARCHAR(255) 
+
+SELECT * FROM Tableau_des_vehicules
+INSERT INTO Tableau_des_vehicules(vehiculeID,Plaque_immatriculation,Marque,Modele,Annee,Couleur,NIV)
+VALUES (3,'ABC123','Toyota','Corolla','2020','blanc',' 1HGCM82633A004352')
+INSERT INTO Tableau_des_vehicules(vehiculeID,Plaque_immatriculation,Marque,Modele,Annee,Couleur,NIV)
+VALUES (4,'XYZ789','Ford','Fusion','2018','bleu','2HGCM82633A004353');
+INSERT INTO Tableau_des_pilotes(DriverID,FirstName,LastName,LicenseNumber,Phone,Address,City,State,Zipcode)
+VALUES (1,'Michael','Smith','D1234567',' 1234567890',' 123 Main St',' Anytown','CA','12345')
+INSERT INTO Tableau_des_pilotes(DriverID,FirstName,LastName,LicenseNumber,Phone,Address,City,State,Zipcode)
+VALUES (2,'Sarah','Connor','D7654321','0987654321','456 Elm St','Otherville','NY','54321');
+INSERT INTO Tableau_des_deplacement(TripsID,VehiculeID,DriverID,StartDate,EndDate,StartLocation,EndLocation,Distance)
+VALUES (1,1,1,'2024-07-01','2024-07-02', 'Los Angeles','San Francisco','380')
+INSERT INTO Tableau_des_deplacement(TripsID,VehiculeID,DriverID,StartDate,EndDate,StartLocation,EndLocation,Distance)
+VALUES (9,4,1,'2024-07-01','2024-07-02', 'Los Angeles','San Francisco','380');
+INSERT INTO entretien(MaintenanceDateID,VehiculeID,MaintenanceDate,Description,Cout)
+VALUES (2,1,'2024-06-15','Vidange huile','50,00');
+INSERT INTO entretien(MaintenanceDateID,VehiculeID,MaintenanceDate,Description,Cout)
+VALUES (3,2,'2024-06-20','Remplacement des pneus','300,00 ');
+
+UPDATE entretien
+SET Cout ='350,00';
+DELETE FROM Tableau_des_vehicules
+WHERE  vehiculeID = 3;
+
+INSERT INTO Tableau_des_deplacement(TripsID,VehiculeID,DriverID,StartDate,EndDate,StartLocation,EndLocation,Distance)
+VALUES(6,2,1,' 2024-07-05',' 2024-07-06 ','Boston','Philadelphie',' 300');
+
+UPDATE Tableau_des_vehicules
+SET Couleur  ='Rouge';
+
+INSERT INTO entretien(MaintenanceDateID,VehiculeID,MaintenanceDate,Description,Cout)
+VALUES (7,1,'2024-07-10','Inspection des freins ','100,00');
+
+UPDATE Tableau_des_pilotes
+SET Phone  =2223334444 ;
+
+DELETE FROM Tableau_des_deplacement
+WHERE TripsID = 2;
+
+SELECT * FROM Tableau_des_vehicules
+SELECT * FROM Tableau_des_pilotes
+SELECT * FROM Tableau_des_deplacement
