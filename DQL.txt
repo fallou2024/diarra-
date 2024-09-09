@@ -1,0 +1,179 @@
+CREATE DATABASE BUSINESS
+
+USE BUSINESS ;
+CREATE TABLE Tableau_des_produits(
+ProductID INT PRIMARY KEY,
+ ProductName CHAR(100),
+ ProductType CHAR(100),
+ Price DECIMAL(11,3)
+ );
+
+ CREATE TABLE Tableau_des_clients(
+ CustomerID INT PRIMARY KEY,
+ CustomerName CHAR(100),
+ Email CHAR(100),
+ Telephone INT
+ );
+
+ CREATE TABLE Tableau_des_commandes(
+ OrderID INT PRIMARY KEY,
+ OrderDate INT,
+ CustomerID INT REFERENCES Tableau_des_clients(CustomerID)
+ );
+
+ CREATE TABLE Tableau_des_details_de_la_commande(
+ OrderDetailID INT PRIMARY KEY,
+ Quantity INT,
+ OrderID INT REFERENCES Tableau_des_commandes(OrderID),
+ ProductID INT REFERENCES Tableau_des_produits(ProductID)
+ );
+
+ CREATE TABLE Tableau_des_types_de_produits(
+ ProductTypeID INT PRIMARY KEY,
+ ProductTypeName CHAR(100)
+ );
+
+ INSERT INTO Tableau_des_produits(ProductID,ProductName,ProductType,Price)
+ VALUES (1,'widget A','widget',10);
+ INSERT INTO Tableau_des_produits(ProductID,ProductName,ProductType,Price)
+ VALUES(2,'widget B','widget', 15);
+ INSERT INTO Tableau_des_produits(ProductID,ProductName,ProductType,Price)
+ VALUES(3,'gadget X','gadget', 20);
+ INSERT INTO Tableau_des_produits(ProductID,ProductName,ProductType,Price)
+ VALUES(4,'gadget Y','gadget', 25);
+ INSERT INTO Tableau_des_produits(ProductID,ProductName,ProductType,Price)
+ VALUES(5,'Machin z','Machin Z',30);
+
+ INSERT INTO Tableau_des_clients(CustomerID,CustomerName,Email,Telephone)
+ VALUES (1,'John Smith',' john@example.com',123-456-7890);
+  INSERT INTO Tableau_des_clients(CustomerID,CustomerName,Email,Telephone)
+ VALUES (2,'Jane Doe','jane.doe@example.com',987-654-3210);
+ INSERT INTO Tableau_des_clients(CustomerID,CustomerName,Email,Telephone)
+ VALUES (3,'Alice Brown',' alice.brown@example.com ', 456-789-0123 );
+
+ INSERT INTO Tableau_des_commandes(OrderID,CustomerID,OrderDate)
+ VALUES(101,1,2024-05-01);
+ INSERT INTO Tableau_des_commandes(OrderID,CustomerID,OrderDate)
+ VALUES(102,2,2024-05-02);
+ INSERT INTO Tableau_des_commandes(OrderID,CustomerID,OrderDate)
+ VALUES(103,3,2024-05-01);
+
+  INSERT INTO Tableau_des_details_de_la_commande(OrderDetailID,OrderID,ProductID,Quantity)
+VALUES(1,101,1,2);   
+INSERT INTO Tableau_des_details_de_la_commande(OrderDetailID,OrderID,ProductID,Quantity)
+VALUES(2,101,3,1);
+INSERT INTO Tableau_des_details_de_la_commande(OrderDetailID,OrderID,ProductID,Quantity)
+VALUES(3,102,2,3);
+INSERT INTO Tableau_des_details_de_la_commande(OrderDetailID,OrderID,ProductID,Quantity)
+VALUES(4,102,4,2);
+INSERT INTO Tableau_des_details_de_la_commande(OrderDetailID,OrderID,ProductID,Quantity)
+VALUES(5,103,5,1);
+
+INSERT INTO Tableau_des_types_de_produits(ProductTypeID,ProductTypeName)
+VALUES (1,'Widget');
+INSERT INTO Tableau_des_types_de_produits(ProductTypeID,ProductTypeName)
+VALUES (2,'Gadget');
+INSERT INTO Tableau_des_types_de_produits(ProductTypeID,ProductTypeName)
+VALUES (3,'Doohickey');
+
+SELECT * FROM Tableau_des_types_de_produits;
+
+SELECT *
+FROM Tableau_des_produits;
+
+SELECT *
+FROM Tableau_des_clients;
+
+SELECT *
+FROM Tableau_des_commandes;
+
+SELECT * FROM Tableau_des_details_de_la_commande;
+
+SELECT *
+FROM Tableau_des_types_de_produits;
+
+Récupérez les noms des produits qui ont été commandés par au moins un client, ainsi que la quantité totale de chaque produit commandé.
+
+SELECT ProductName, SUM(Quantity) AS 'Quantité totale commandée' FROM Tableau_des_produits 
+JOIN Tableau_des_details_de_la_commande ON Tableau_des_produits.ProductID = Tableau_des_details_de_la_commande.ProductID
+GROUP BY ProductName;
+
+Récupérez les noms des clients qui ont passé une commande chaque jour de la semaine, ainsi que le nombre total de commandes passées par chaque client.
+
+SELECT CustomerName, COUNT(DISTINCT OrderDate) AS 'Nombre total de commande' FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID=Tableau_des_commandes.CustomerID
+GROUP BY CustomerName
+HAVING COUNT(DISTINCT OrderDate)=7;
+
+Récupérez les noms des clients ayant passé le plus de commandes, ainsi que le nombre total de commandes passées par chaque client.
+SELECT CustomerName, COUNT(OrderID) AS 'Nombre total de commande' 
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID=Tableau_des_commandes.CustomerID
+GROUP BY CustomerName
+ORDER BY 'Nombre total de commande' DESC;  
+
+Récupérez les noms des produits qui ont été le plus commandés, ainsi que la quantité totale de chaque produit commandé.
+SELECT ProductName , SUM(Quantity) AS 'TotalOrder' FROM Tableau_des_produits
+JOIN Tableau_des_details_de_la_commande ON Tableau_des_produits.ProductID=Tableau_des_details_de_la_commande.ProductID
+GROUP BY ProductName
+ORDER BY 'TotalOrder' DESC;
+
+Récupérer les noms des clients ayant passé commande pour au moins un widget
+SELECT CustomerName
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID=Tableau_des_commandes.CustomerID
+JOIN Tableau_des_details_de_la_commande ON Tableau_des_commandes.OrderID=Tableau_des_details_de_la_commande.OrderID
+JOIN Tableau_des_produits ON Tableau_des_details_de_la_commande.ProductID=Tableau_des_produits.ProductID
+WHERE ProductType='widget';
+
+Récupérez les noms des clients ayant passé commande d'au moins un widget et d'au moins un gadget, ainsi que le coût total des widgets et gadgets commandés par chaque client.
+
+SELECT CustomerName,
+       SUM(CASE WHEN Tableau_des_produits.ProductType = 'Widget' THEN Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity ELSE 0 END) AS TotalWidgetsCoUt,
+       SUM(CASE WHEN Tableau_des_produits.ProductType = 'Gadget' THEN Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity ELSE 0 END) AS TotalGadgetsCoUt
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID=Tableau_des_commandes.CustomerID
+JOIN Tableau_des_details_de_la_commande ON Tableau_des_commandes.OrderID=Tableau_des_details_de_la_commande.OrderID
+JOIN Tableau_des_produits ON Tableau_des_details_de_la_commande.ProductID=Tableau_des_produits.ProductID
+WHERE Tableau_des_produits.ProductType IN ('Widget', 'Gadget')
+GROUP BY Tableau_des_clients.CustomerName
+HAVING SUM(CASE WHEN Tableau_des_produits.ProductType = 'Widget' THEN 1 ELSE 0 END) > 0
+   AND SUM(CASE WHEN Tableau_des_produits.ProductType = 'Gadget' THEN 1 ELSE 0 END) > 0;
+
+   
+
+
+   SELECT Tableau_des_clients.CustomerName, 
+       SUM(Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity) AS TotalGadgetsCout
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes  ON Tableau_des_clients.CustomerID = Tableau_des_commandes.CustomerID
+JOIN Tableau_des_details_de_la_commande  ON Tableau_des_commandes.OrderID = Tableau_des_details_de_la_commande.OrderID
+JOIN Tableau_des_produits ON Tableau_des_details_de_la_commande.ProductID = Tableau_des_produits.ProductID
+WHERE Tableau_des_produits.ProductType = 'Gadget'
+GROUP BY Tableau_des_clients.CustomerName;
+
+ SELECT Tableau_des_clients.CustomerName, 
+       SUM(Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity) AS TotalDoohickeysCout
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes  ON Tableau_des_clients.CustomerID = Tableau_des_commandes.CustomerID
+JOIN Tableau_des_details_de_la_commande  ON Tableau_des_commandes.OrderID = Tableau_des_details_de_la_commande.OrderID
+JOIN Tableau_des_produits ON Tableau_des_details_de_la_commande.ProductID = Tableau_des_produits.ProductID
+WHERE Tableau_des_produits.ProductType = 'Doohickey'
+GROUP BY Tableau_des_clients.CustomerName;
+
+SELECT Tableau_des_clients.CustomerName, COUNT(Tableau_des_commandes.OrderID) AS TotalOrders
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID = Tableau_des_commandes.CustomerID
+GROUP BY Tableau_des_clients.CustomerName;
+
+SELECT CustomerName,
+       SUM(CASE WHEN Tableau_des_produits.ProductType = 'Widget' THEN Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity ELSE 0 END) AS TotalWidgetsCoUt,
+       SUM(CASE WHEN Tableau_des_produits.ProductType = 'Gadget' THEN Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity ELSE 0 END) AS TotalGadgetsCoUt,
+	     SUM(Tableau_des_produits.Price * Tableau_des_details_de_la_commande.Quantity) AS TotalCost
+FROM Tableau_des_clients
+JOIN Tableau_des_commandes ON Tableau_des_clients.CustomerID=Tableau_des_commandes.CustomerID
+JOIN Tableau_des_details_de_la_commande ON Tableau_des_commandes.OrderID=Tableau_des_details_de_la_commande.OrderID
+JOIN Tableau_des_produits ON Tableau_des_details_de_la_commande.ProductID=Tableau_des_produits.ProductID
+WHERE Tableau_des_produits.ProductType IN ('Widget', 'Gadget')
+GROUP BY Tableau_des_clients.CustomerName;
+
