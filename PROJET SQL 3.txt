@@ -1,0 +1,125 @@
+CREATE DATABASE BUSINESS
+
+VIN (NumerovinID,category,Annee,Degre)
+Producteur(NumeroProductID,prenom,nom,region)
+
+CREATE TABLE Table_vin(
+NumerovinID INT PRIMARY KEY,
+Category CHAR(100),
+Annee INT,
+Degre DECIMAL(10,2)
+);
+
+CREATE TABLE Table_Producteur(
+NumeroProductID INT PRIMARY KEY,
+Prenom CHAR(100),
+Nom CHAR(100),
+Region CHAR(100)
+);
+
+CREATE TABLE Table_Fabrication(
+NumeroProductID INT REFERENCES Table_Producteur(NumeroProductID),
+NumerovinID INT REFERENCES Table_vin(NumerovinID),
+Recolt CHAR(100),
+Quantite CHAR(100),
+);
+
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(1, 'Rouge', 2019, 13.5)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(2, 'Blanc', 2020, 12.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES (3, 'Rose', 2018, 11.5)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(4, 'Red', 2021, 14.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES (5, 'Sparkling', 2017, 10.5)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES (6, 'Blanc', 2019, 12.5)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(7, 'Rouge', 2022, 13.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(8, 'Rose', 2020, 11.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(9, 'Rouge', 2018, 12.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES (10, 'Sparkling', 2019, 10.0)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(11, 'Blanc', 2021, 11.5)
+INSERT INTO Table_vin(NumerovinID,Category,Annee,Degre)
+VALUES(12, 'Rouge', 2022, 15.0)
+
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES(1, 'John', 'Smith', 'Sousse')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (2, 'Emma', 'Johnson', 'Tunis')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES(3, 'Michael', 'Williams', 'Sfax')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (4, 'Emily', 'Brown', 'Sousse')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (5, 'James', 'Jones', 'Sousse')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES  (6, 'Sarah', 'Davis', 'Tunis')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (7, 'David', 'Miller', 'Sfax')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES  (8, 'Olivia', 'Wilson', 'Monastir')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (9, 'Daniel', 'Moore', 'Sousse')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (10, 'Sophia', 'Taylor', 'Tunis')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (11, 'Matthieu', 'Anderson', 'Sfax')
+INSERT INTO Table_Producteur(NumeroProductID,Prenom ,Nom,Region)
+VALUES (12, 'Amélia', 'Thomas', 'Sousse')
+
+SELECT* FROM Table_Producteur
+
+SELECT Nom FROM Table_Producteur
+ORDER BY Nom;
+
+SELECT Region FROM Table_Producteur
+WHERE Region='Sousse'
+
+SELECT SUM(CAST(Quantite AS INT)) AS QuantiteTotale
+FROM Table_Fabrication
+WHERE NumeroVinID=12;
+
+SELECT Table_vin.Category, SUM(CAST(Table_Fabrication.Quantite AS INT)) AS QuantiteTotale
+FROM Table_vin 
+JOIN Table_Fabrication  ON Table_vin.NumerovinID = Table_Fabrication.NumerovinID
+GROUP BY Table_vin.Category;
+
+SELECT Prenom,Nom
+FROM Table_Producteur 
+JOIN Table_Fabrication  ON Table_Producteur.NumeroProductID = Table_Fabrication.NumeroProductID
+WHERE Table_Producteur .Region = 'Sousse' AND CAST(Table_Fabrication.Quantite AS INT) > 300
+GROUP BY Table_Producteur.Prenom, Table_Producteur.Nom
+ORDER BY Table_Producteur.Nom, Table_Producteur.Prenom;
+
+SELECT Table_vin.NumerovinID
+FROM Table_vin 
+JOIN Table_Fabrication  ON Table_vin.NumerovinID = Table_Fabrication.NumerovinID
+WHERE Table_vin.Degre > 12 AND Table_Fabrication.NumeroProductID = 24;
+
+SELECT Table_Producteur.Prenom, Table_Producteur.Nom, SUM(CAST(Table_Fabrication.Quantite AS INT)) AS QuantiteTotale
+FROM Table_Producteur 
+JOIN Table_Fabrication  ON Table_Producteur.NumeroProductID = Table_Fabrication.NumeroProductID
+GROUP BY Table_Producteur.Prenom, Table_Producteur.Nom
+ORDER BY QuantiteTotale DESC;
+
+SELECT AVG(Degre) FROM Table_vin
+
+SELECT NumeroVinID , Category, Annee FROM Table_vin
+ORDER BY Annee DESC ;
+
+SELECT Table_Producteur.Prenom, Table_Producteur.Nom, SUM(CAST(Table_Fabrication.Quantite AS INT)) AS QuantiteTotale
+FROM Table_Producteur 
+JOIN Table_Fabrication  ON Table_Producteur.NumeroProductID = Table_Fabrication.NumeroProductID
+GROUP BY Table_Producteur.Prenom, Table_Producteur.Nom;
+
+SELECT Table_vin.NumerovinID, Table_vin.Category, Table_vin.Annee, Table_vin.Degre, Table_Producteur.Prenom, Table_Producteur.Nom, Table_Producteur.Region
+FROM Table_vin 
+JOIN Table_Fabrication  ON Table_vin.NumerovinID = Table_Fabrication.NumerovinID
+JOIN Table_Producteur  ON Table_Fabrication.NumeroProductID = Table_Producteur.NumeroProductID;
