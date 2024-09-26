@@ -1,0 +1,45 @@
+class compte:
+  def _int_(self,account_number,account_balance,account_holder):
+    self.account_number=account_number
+    self.account_balance=account_balance
+    self.account_holder_name=account_holder
+
+def _int_(self,deposit):
+  self.account_balence=self.account_balence+deposit
+  return self.account_balance
+
+def _init_(self,withdraw):
+  if withdraw>self.account_balance:
+    print("retrait avec succes")
+  else:
+    print("fond insuffisant")
+
+def _init_(self,check_balance):
+  self.account_balance=self.check_balance
+  return self.account_balance
+
+my_bank_account=compte
+def _init_(self,my_account):
+  self.account_number=my_account.account_number
+  self.account_balance=my_account.account_balance
+  self.account_holder_name=my_account.account_holder_name
+       
+def _init_(self,deposit):
+  self.account_balence=my_bank_account.account_balance
+  return my_bank_account
+
+def _init_(self,withdraw):
+  if withdraw>my_bank_account.account_balance:
+    print("retrait avec succes")
+  else:
+    print("fond insuffisant")
+
+def _init_(self,check_balance):
+  self.account_balance=my_bank_account.account_balance
+  return my_bank_account.account_balance
+
+
+
+
+
+
