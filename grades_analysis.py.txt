@@ -1,0 +1,69 @@
+import numpy as np
+array_grade=np.array([85, 90, 88, 92, 95, 80, 75, 98, 89, 83])
+array_grade 
+
+#la moyenne
+x=np.mean(array_grade)
+print(x)
+
+#la medianne
+x=np.median(array_grade)
+print(x)
+
+#l'ecartype
+x=np.std(array_grade)
+print(x)
+
+#le maximum
+x=np.max(array_grade)
+print(x)
+
+#le minimum
+x=np.min(array_grade)
+print(x)
+
+#par ordre croissant
+array_grade.sort()
+print(array_grade)
+
+array_grade.sort(axis=0)
+print(array_grade)
+
+#la note la plus elevee
+array_grade=np.amax(array_grade,axis=0)
+print(array_grade)
+
+array_grade=np.maximum.reduce(array_grade)
+print(array_grade)
+
+
+array_grade[array_grade>90]
+print(array_grade)
+
+array_grade>90
+print(array_grade)
+
+#le nombre d'etudiants ayant obtenu plus de 90
+x=np.mean(array_grade>90)
+print(x)
+
+#le pourcentage du nombre d'etudiants ayant obtenu plus de 90
+x=np.mean(array_grade>90)*100
+print(x)
+
+#le pourcentage du nombre d'etudiants ayant obtenu moins de 75
+x=np.mean(array_grade<75)*100
+print(x)
+
+#creation du tableau high_perfomers
+import numpy as np 
+high_performers=np.array(array_grade>90)
+print(high_performers) 
+
+#creation du tableau passing_grade
+import numpy as np
+passing_grades=np.array(array_grade>75)
+print(passing_grades)
+
+
+
