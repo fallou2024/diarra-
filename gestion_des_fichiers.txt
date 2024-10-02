@@ -1,0 +1,20 @@
+import numpy as np
+with open('Loan_prediction_dataset.csv','r') as file:
+  data=np.genfromtxt(file,delimiter=',',dtype=None,names=True,encoding='utf-8')
+  print(data)
+
+  #extraire les donnees de pret montant
+  montant_pret=data['LoanAmount']
+  print(montant_pret)
+
+  #la moyenne
+  moy=np.mean(montant_pret)
+  print(moy)
+
+  #la medianne
+  med=np.median(montant_pret)
+  print(med)
+
+  #l'ecartype
+  eca=np.std(montant_pret)
+  print(eca)
