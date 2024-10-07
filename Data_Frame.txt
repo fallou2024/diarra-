@@ -1,0 +1,21 @@
+import pandas as pd
+data = {'Nom': ['John', 'Mary', 'Bob', 'Sarah', 'Tom', 'Lisa'], 'Département': ['IT', 'Marketing', 'Ventes', 'IT', 'Finances', 'Marketing'], 'Âge': [30, 40, 25, 35, 45, 28], 'Sexe': ['Homme', 'Femme', 'Homme', 'Femme', 'Homme', 'Femme'], 'Salaire': [50000, 60000, 45000, 55000, 70000, 55000], 'Expérience': [3, 7, 2, 5, 10, 4]}
+employes_df = pd.DataFrame(data)
+print(employes_df)
+
+employes_df.iloc[:3,:0]
+#sélectionner les 3 premières lignes du dataframe
+employes_df.iloc[:3]
+
+# sélectionner toutes les lignes où le département est « Marketing ».
+Marketing_df=employes_df.loc[employes_df['Département']=='Marketing']
+print(Marketing_df)
+
+#sélectionner les colonnes Âge et Sexe pour les 4 premières lignes du dataframe.
+age_sexe_df=employes_df.iloc[:4, [2,3]]
+
+# Sélectionner les colonnes Salaire et Expérience pour les lignes où le sexe est 'Homme'
+hommes_df = employes_df.loc[employes_df['Sexe'] == 'Homme', ['Salaire', 'Expérience']]
+
+print(hommes_df)
+
