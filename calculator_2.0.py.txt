@@ -1,0 +1,85 @@
+import math as mt
+import operator as op
+
+
+def add(self, a, b):
+    return a + b
+def substract(self, a, b):
+    return a - b
+def divide(self, a, b):
+    if b == 0:
+        print('error')
+        raise ZeroDivisionError("Division par zéro")
+        return a / b
+def multiply(self, a, b):
+        return a * b
+
+def exponentiation(a, b):
+            return a ** b
+def square_root(x):
+            return mt.sqrt(x)
+def logarithm(x, base=mt.e):
+            return mt.log(x, base)   
+
+class calculator:
+    def __init__(self):
+        self.operation = {
+            '+':add, 
+            '-':substract, 
+            '*':multiply,
+            '/': divide}
+    def add_operation(self, symbol, function):
+        self.operation[symbol] = function 
+    def calculate(self, a,symbol,b):
+        if symbol not in self.operation:
+                print('error')
+                raise ValueError('operation no valide')
+        if isinstance(a(int,float)) or not isinstance(b(int,float)):
+                print('error')
+                raise ValueError('entrée no valide')
+        return self.operations[symbol](a,b)
+        
+        
+
+
+        
+
+
+def main():
+    add = calculator()
+        
+    add.add_operation('**', exponentiation)
+    add.add_operation('mt.sqrt', square_root)
+    add.add_operation('mt.log', logarithm)
+    while True:
+        print("1. Add")
+        print("2. substract")
+        print("3. Multiply")
+        print("4. Divide")
+        print("5. exponentiation")
+        print("6. square_root")
+        print("7. Logarithm")
+        print("8. Exit")
+
+        choice = input('put your choice: ')
+        if choice in [1, 2, 3, 4, 5]:
+            a = float(input('Enter first number: '))
+            b = float(input('Enter second number: '))
+            operation_symbol = {'1': '+', '2': '-', '3': '*', '4': '/', '5': '**'}
+            result = operation_symbol[operation_symbol](a, b)
+            #result = add.calculate(a, operation_symbol, b)
+        elif choice in ['6','7']:
+            a = float(input('enter a number: '))
+            operation_symbol = {'6':'mt.sqrt', '7':'Logarithm'}[choice]
+            result = add.calculate(a, operation_symbol)
+        elif choice == 8:
+              print('good bye')
+              break
+        
+
+
+
+
+calculator()
+#main()
+              
