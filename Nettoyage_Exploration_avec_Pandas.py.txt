@@ -1,0 +1,48 @@
+path="/content/drive/MyDrive/Colab Notebooks/STEG_BILLING_HISTORY.csv"
+df=pd.read_csv(path)
+df.head()
+
+client_0_bills=df.iloc[:10]
+print(client_0_bills)
+#le type de variables du clents_O_bills est du type entier
+
+#le nombre de lignes et de colonnes 
+n_lignes,n_colonnes=df.shape
+print(f"le nombre de lignes est {n_lignes} et le nombre de colonnes est {n_colonnes}")
+
+#le nombre de fonctionnalite present dans la base de donnees
+# Sélectionner les colonnes de type 'object' ou 'category'
+colonne_categorille=df.select_dtypes(include=['object','category'])
+
+# Compter le nombre de fonctionnalités catégorielles
+nombre_de_fonctionnalite=colonne_categorille.shape[1]
+print(f"le nombre de fonctionnalite est {nombre_de_fonctionnalite}")
+
+#l'espace de memoire utilise
+memoire_utilisé=df.memory_usage(deep=True).sum()
+print(f"l'espace de memoire utilise est {memoire_utilisé} octets")
+
+#detecter les valeurs manquantes
+valeurs_manquantes=df.isnull().sum()
+print(f"les valeurs manquantes sont {valeurs_manquantes}")
+
+#supprimer les valeurs manquantes 
+df_sans_manquantes=df.dropna()
+print(df_sans_manquantes)
+#j'ai cette methode pour eliminer les colonnes insense
+
+# une analyse descriptive sur les colonnes numeriques
+analyse_descriptive=df.describe()
+print(analyse_descriptive)
+
+#Sélectionnez les enregistrements de factures pour le client avec un identifiant
+train_client_0=df[df['client_id']==0]
+print(train_client_0)
+
+#Transformez la fonctionnalité « counter_type » en une variable numérique
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+df['counter_type']=le.fit_transform(df['counter_type'])
+print(df['counter_type'])
+
+df['counter_statue']=df['counter_statue'].dropna()
