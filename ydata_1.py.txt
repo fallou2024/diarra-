@@ -1,0 +1,27 @@
+path="/content/drive/MyDrive/Colab Notebooks/EDUCATION_ATTAINMENT.csv"
+df=pd.read_csv(path)
+df.head()
+
+#Afficher des informations générales sur l'ensemble de données
+df.info()
+
+#une analyse descriptive
+df.describe()
+
+#Generation du rapport
+profile = ProfileReport(df, title="EDUCATION_ATTAINMENT")
+profile.to_notebook_iframe()
+profile.to_file("education_attainment.html")
+
+#les valeurs manquantes
+df.isnull().sum()
+
+#!pip install category_encoders
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+df['country']=LabelEncoder().fit_transform(df['country'])
+
+
+#les corrélations entre les différentes colonnes de l'ensemble de donnée
+df.corr()
+
