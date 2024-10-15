@@ -1,0 +1,48 @@
+!pip install pandas-profiling
+!pip install ydata-profiling
+
+import pandas as pd
+import io
+from ydata_profiling import ProfileReport
+
+path="/content/drive/MyDrive/Colab Notebooks/Tunisair_flights_dataset.csv"
+df=pd.read_csv(path)
+
+df.head()
+
+df.info()
+
+df.isnull().sum()
+
+df.describe()
+
+#generation d'un rapport
+profile=ProfileReport(df,title="Tunisair Flights Dataset")
+profile.to_notebook_iframe()
+profile.to_file("Tunisair Flights Dataset.html")
+
+df.isnull().sum()
+
+#en pourcentage
+df.isnull().mean()*100
+
+colonne_categorielles=df.select_dtypes(include=['object']).columns
+colonne_categorielles
+
+#Convert date column to datetime format 
+#df['Filght_date'] = pd.to_datetime(df['Filght_date'])
+
+df.info()
+
+from sklearn.preprocessing import LabelEncoder
+
+#verifier s'il existe des colonnes numeriques dans les colonnes categorielle
+for col in df.columns:
+  if df[col].dtype=='object':
+    le=LabelEncoder()
+    df[col]=le.fit_transform(df[col])
+
+df.corr()
+
+
+
