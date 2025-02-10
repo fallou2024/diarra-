@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<!--
+	Multiverse by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio du Gradialateur</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="Portfolio"><strong>Multiverse</strong> by HTML5 UP</a></h1>
+						<nav>
+							<ul>
+								<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+						<article class="thumb">
+							<a href="https://colab.research.google.com/drive/1Tx3m1gCIy9WdW8iiNUV7twz-s4q8IQAd?usp=sharing" class="image"><img src="images/thumbs/01.jpg" alt="" /></a>
+							<h2>5G Energy</h2>
+							<p>La consommation d'Energy 5G des bases de radio.</p>
+						</article>
+						<article class="thumb">
+							<a href="https://colab.research.google.com/drive/1roMDcz9xEKJYnAsh-sSrE_p1Tc_oarZU?usp=sharing" class="image"><img src="images/thumbs/02.jpg" alt="" /></a>
+							<h2>Bank crisis</h2>
+							<p>prediction de crise dans une banque .</p>
+						</article>
+						<article class="thumb">
+							<a href="https://github.com/fallou2024/git-test/blob/main/Faciale" class="image"><img src="images/thumbs/03.jpg" alt="" /></a>
+							<h2>Reconnaissance Faciale</h2>
+							<p>Un chatbot de Reconnaissance Faciale avec viola jones.</p>
+						</article>
+						<article class="thumb">
+							<a href="https://github.com/fallou2024/git-test/blob/main/CHATBOT" class="image"><img src="images/thumbs/04.jpg" alt="" /></a>
+							<h2>chatbot d'un boutique</h2>
+							<p>la creation de chatbot pour une boutique electronique et electromenager pour repondre des questions frequentes.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt="" /></a>
+							<h2>Cursis aliquam nisl</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/06.jpg" class="image"><img src="images/thumbs/06.jpg" alt="" /></a>
+							<h2>Sed consequat phasellus</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/07.jpg" class="image"><img src="images/thumbs/07.jpg" alt="" /></a>
+							<h2>Mauris id tellus arcu</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/08.jpg" class="image"><img src="images/thumbs/08.jpg" alt="" /></a>
+							<h2>Nunc vehicula id nulla</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/09.jpg" class="image"><img src="images/thumbs/09.jpg" alt="" /></a>
+							<h2>Neque et faucibus viverra</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/10.jpg" class="image"><img src="images/thumbs/10.jpg" alt="" /></a>
+							<h2>Mattis ante fermentum</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/11.jpg" class="image"><img src="images/thumbs/11.jpg" alt="" /></a>
+							<h2>Sed ac elementum arcu</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+						<article class="thumb">
+							<a href="images/fulls/12.jpg" class="image"><img src="images/thumbs/12.jpg" alt="" /></a>
+							<h2>Vehicula id nulla dignissim</h2>
+							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+						</article>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer" class="panel">
+						<div class="inner split">
+							<div>
+								<section>
+									<h2>Mes projets recents</h2>
+									<p>Prédiction de la Consommation d'Énergie 5G : J'ai travaillé sur un projet de prédiction de la consommation d'énergie des bases radio 5G, afin d'optimiser leur efficacité énergétique et de réduire les coûts opérationnels.
+
+										Prédiction de Crises Bancaires : J'ai également réalisé un projet visant à prédire les crises bancaires en utilisant des techniques avancées d'analyse des données, permettant ainsi d'anticiper et de gérer les risques financiers de manière proactive.
+										
+										Reconnaissance Faciale : J'ai développé un système de reconnaissance faciale, basé sur l'algorithme de Viola-Jones, qui permet d'identifier et de vérifier l'identité des personnes de manière fiable et rapide.
+										
+										Chatbot pour une Boutique Électronique et Électroménager : Enfin, j'ai conçu un chatbot pour une boutique spécialisée en électronique et électroménager, capable de répondre aux questions fréquentes des clients et d'améliorer leur expérience d'achat en ligne.</p>
+								</section>
+								<section>
+									<h2>Follow me on ...</h2>
+									<ul class="icons">
+										<li><a href="#" class="https://colab.research.google.com/drive/1Tx3m1gCIy9WdW8iiNUV7twz-s4q8IQAd?usp=sharing"><span class="label">google colab</span></a></li>
+										<li><a href="#" class="https://colab.research.google.com/drive/1roMDcz9xEKJYnAsh-sSrE_p1Tc_oarZU?usp=sharing"><span class="label">google colab</span></a></li>
+										<li><a href="#" class="https://github.com/fallou2024/git-test/blob/main/Faciale"><span class="label">GitHub</span></a></li>
+										<li><a href="#" class="https://github.com/fallou2024/git-test/blob/main/CHATBOT"><span class="label">GitHub</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</section>
+								<p class="copyright">
+									&copy; Unttled. Design: <a href="http://html5up.net">HTML5 UP</a>.
+								</p>
+							</div>
+							<div>
+								<section>
+									<h2>Get in touch</h2>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<input type="text" name="name" id="name" placeholder="Name" />
+											</div>
+											<div class="field half">
+												<input type="text" name="email" id="email" placeholder="Email" />
+											</div>
+											<div class="field">
+												<textarea name="message" id="message" rows="4" placeholder="Message"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+							</div>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
